@@ -1,0 +1,13 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: cart-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27018/crm
+      username: mongouser
+      password: mongopassword
+      authentication-database: admin
+server:
+  port: 8080
