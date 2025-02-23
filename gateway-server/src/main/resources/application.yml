@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: "gateway-server"
+  cloud:
+    gateway:
+      routes:
+        - id: "order-service"
+          uri: " lb://order-service" # lb ->load balancing yaparak order service'e git
+          predicates: #yönlendirme yapabilmesi için sistemin belirli kelimelerle bu istek ?uraya bir istek buraya diyebiliyoruz
+            - "Path=/api/v1/orders/**" #orders ile ba?ayanlar? buraya gönder diyor ** ise devam eden demek
+        - id: "customer-service"
+          uri: " lb://customer-service"
+          predicates:
+            - "Path=/api/v1/customers/**"
+        - id: "cart-service"
+          uri: " lb://cart-service"
+          predicates:
+            - "Path=/api/v1/cart/**"
+        - id: "identity-service"
+          uri: " lb://identity-service"
+          predicates:
+            - "Path=/api/v1/identities/**"
+        - id: "product-service"
+          uri: " lb://product-service"
+          predicates:
+            - "Path=/api/v1/products/**"
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://localhost:8888/eureka/"
+    register-with-eureka: true
+    fetch-registry: true

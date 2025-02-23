@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: discovery-server
+server:
+  port: 8888
+
+eureka:
+  instance:
+    hostname: "localhost"
+  client:
+    service-url:
+      defaultZone: "http://localhost:8888/eureka" #buradada url le çalıştıroyurz bir sıkıntı olmaz çünkü servicesler gibi gbirden fazla instance ile çalışmıyorlar
+    register-with-eureka: false #kendi kendine tanıtmasın
+    fetch-registry: false
