@@ -14,3 +14,9 @@ spring:
       show-sql: true
 server:
   port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://localhost:8888/eureka" #buradada url le çal??t?royurz bir s?k?nt? olmaz çünkü servicesler gibi gbirden fazla instance ile çal??m?yorlar
+    register-with-eureka: true #beni kay?t et
+    fetch-registry: true #kay?tl?lar? al
