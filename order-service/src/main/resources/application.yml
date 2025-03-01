@@ -1,6 +1,20 @@
 spring:
   application:
     name: order-service
+  cloud:
+    stream:
+      defaultBinder: kafka
+      function:
+        definition: orderCreatedFunction
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        orderCreatedFunction-out-0:
+          destination: order-topic
+          content-type: application/json
+
+
   datasource:
     url: "jdbc:postgresql://localhost:5433/crm"
     username: myuser
@@ -18,6 +32,6 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: "http://localhost:8888/eureka" #buradada url le çal??t?royurz bir s?k?nt? olmaz çünkü servicesler gibi gbirden fazla instance ile çal??m?yorlar
+      defaultZone: "http://localhost:8888/eureka" #buradada url le ï¿½al??t?royurz bir s?k?nt? olmaz ï¿½ï¿½nkï¿½ servicesler gibi gbirden fazla instance ile ï¿½al??m?yorlar
     register-with-eureka: true #beni kay?t et
-    fetch-registry: true #kay?tl?lar? al
+    fetch-registry: true
