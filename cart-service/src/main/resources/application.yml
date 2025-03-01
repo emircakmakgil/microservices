@@ -3,6 +3,20 @@ spring:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   application:
     name: cart-service
+  cloud:
+    stream:
+      defaultBinder: kafka
+      function:
+        definition: orderCreatedFunction #fonksiyon ismi deÄŸiÅŸtierebilirsin Ã§ok bir Ã¶nemi yok
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        orderCreatedFunction-in-0: #consumer olduÄŸu iÃ§in out deÄŸil in olmalÄ±
+          destination: order-topic
+          content-type: application/json #genelde verilmez ama biz verelim
+          group: cart-group
+
   data:
     mongodb:
       uri: mongodb://localhost:27018/crm
@@ -15,6 +29,6 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: "http://localhost:8888/eureka" #buradada url le çal??t?royurz bir s?k?nt? olmaz çünkü servicesler gibi gbirden fazla instance ile çal??m?yorlar
+      defaultZone: "http://localhost:8888/eureka" #buradada url le ï¿½al??t?royurz bir s?k?nt? olmaz ï¿½ï¿½nkï¿½ servicesler gibi gbirden fazla instance ile ï¿½al??m?yorlar
     register-with-eureka: true #beni kay?t et
     fetch-registry: true #kay?tl?lar? al
