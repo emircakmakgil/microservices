@@ -1,7 +1,7 @@
 services:
   Order-Service:
     image: postgres
-    container_name: "order_service"
+    container_name: "order1_service"
     ports:
       - "5433:5432"
     environment:
@@ -58,10 +58,11 @@ services:
     volumes:
       - customer_service_data:/var/lib/mysql
   order-service:
-    container_name: order_service
     image: turkcell-order-service
     ports:
       - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://Order-Service:5432/order-service"
 
 
   kafka:
