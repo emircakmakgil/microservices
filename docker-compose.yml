@@ -57,6 +57,12 @@ services:
     - "MYSQL_PASSWORD=mypassword"
     volumes:
       - customer_service_data:/var/lib/mysql
+  order-service:
+    container_name: order_service
+    image: turkcell-order-service
+    ports:
+      - "8084:8084"
+
 
   kafka:
     image: bitnami/kafka

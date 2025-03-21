@@ -35,3 +35,8 @@ eureka:
       defaultZone: "http://localhost:8888/eureka" #buradada url le �al??t?royurz bir s?k?nt? olmaz ��nk� servicesler gibi gbirden fazla instance ile �al??m?yorlar
     register-with-eureka: true #beni kay?t et
     fetch-registry: true
+
+order-service:
+  build: .  # Dockerfile'ın bulunduğu dizin
+  ports:
+    - "8084:8084"
